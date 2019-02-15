@@ -57,10 +57,10 @@ fn main() {
     // Freezes Pi if an image capture is attempted right away
     sleep_millis(2000);
 
-    const WAIT_TIME: u64 = 10; // seconds
+    let wait_time: u64 = env!("WAIT_TIME").parse().expect("Invalid number for WAIT_TIME");
     let mut start_time = SystemTime::now();
     loop {
-        if start_time.elapsed().unwrap().as_secs() < WAIT_TIME {
+        if start_time.elapsed().unwrap().as_secs() < wait_time {
             sleep_millis(1000);
             continue;
         }
