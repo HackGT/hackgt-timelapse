@@ -22,11 +22,11 @@ fn main() {
         let rx = rx.clone();
         thread::spawn(move || {
             let bucket = Bucket::new(
-                option_env!("BUCKET_NAME").unwrap_or("hackgt-timelapse"),
-                option_env!("REGION").unwrap_or("us-east-1").parse().unwrap(),
+                option_env!("BUCKET_NAME").unwrap_or("hackgt-timelapse").trim(),
+                option_env!("REGION").unwrap_or("us-east-1").trim().parse().unwrap(),
                 Credentials::new(
-                    Some(env!("ACCESS_KEY").to_string()),
-                    Some(env!("SECRET_KEY").to_string()),
+                    Some(env!("ACCESS_KEY").trim().to_string()),
+                    Some(env!("SECRET_KEY").trim().to_string()),
                     None,
                     None
                 )
